@@ -1,0 +1,29 @@
+{
+  "name": "wanted-pre-onboarding-backend",
+  "version": "1.0.0",
+  "description": "<br></br> ## 1. 과제 안내 ### 과제 안내",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cobaltcyan/wanted-pre-onboarding-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cobaltcyan/wanted-pre-onboarding-backend/issues"
+  },
+  "homepage": "https://github.com/cobaltcyan/wanted-pre-onboarding-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.5.2",
+    "nodemon": "^3.0.1"
+  }
+}
