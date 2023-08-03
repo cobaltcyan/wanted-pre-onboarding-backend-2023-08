@@ -3,11 +3,11 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require("body-parser");
-// const { swaggerUi, specs } = require("./config/swagger");
 const cookieParser = require("cookie-parser");
+// const { swaggerUi, specs } = require("./config/swagger");
 
 /** Database */
-const mysql = require('mysql2');
+// const mysql = require('mysql2');
 
 /** Router */
 const indexRouter = require('./src/routes/indexRouter.js')
