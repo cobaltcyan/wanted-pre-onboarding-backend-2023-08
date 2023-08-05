@@ -21,9 +21,14 @@ router.get('/', function(req, res, next) {
       }
       
       // 가져온 데이터를 index 템플릿에 전달하여 렌더링
-      res.render('../src/index', { rows: rows });
+      // res.render('../src/index', { rows: rows });
+      res.render('index', { rows: rows });
+
     });
 });
+
+router.get('/api/user', userRouter);
+router.get('/api/community', communityRouter);
 
 // module.exports = router;
 // export default indexRouter; //오류나네

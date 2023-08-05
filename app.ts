@@ -4,11 +4,13 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-// const { swaggerUi, specs } = require("./config/swagger");
+import path from 'path';
+// import { swaggerUi, specs } from '../config/swagger';
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
 const app = express();
+const indexPath = path.join(__dirname, '../pages');     // client side
+const prisma = new PrismaClient();
 
 /** Database */
 // const mysql = require('mysql2');
@@ -21,7 +23,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/', indexRouter);
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs)); // Swagger 설정 추가
 
 app.listen(PORT, () => {
     console.log(`Server on http://localhost:${PORT}`);
+    console.log('indexPath:', indexPath);
 });

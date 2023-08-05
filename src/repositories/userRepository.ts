@@ -1,5 +1,5 @@
 // const User = require('../domain/user');
-import User from '../domain/user';
+import User from '../domain/User';
 
 const userRepository = {
 

@@ -13,5 +13,5 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello World!');
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log('Listen on port ${PORT}'));
