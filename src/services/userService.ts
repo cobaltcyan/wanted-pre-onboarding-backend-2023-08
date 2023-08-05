@@ -1,4 +1,5 @@
-const userRepository = require('../repositories/userRepository');
+// const userRepository = require('../repositories/userRepository');
+import userRepository from '../repositories/userRepository';
 
 const userService = {
 
@@ -6,4 +7,5 @@ const userService = {
 
 }
 
-module.exports = userService;
+// module.exports = userService;
+export default userService;

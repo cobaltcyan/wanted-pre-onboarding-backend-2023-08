@@ -1,9 +1,15 @@
-const express = require('express');
-const router = express.Router();
-const database = require('../config/database.js');
+// const express = require('express');
+// const router = express.Router();
+// const database = require('../config/database.js');
 
-const userRouter = require('./userRouter');
-const communityRouter = require('./communityRouter');
+import express from 'express';
+import database from '../config/database';
+const router = express.Router();
+
+// const userRouter = require('./userRouter');
+// const communityRouter = require('./communityRouter');
+import userRouter from './userRouter';
+import communityRouter from './communityRouter';
 
 router.get('/', function(req, res, next) {
     const sql = 'SELECT * FROM TEST'; // 예시: memos 테이블에서 모든 데이터를 가져오는 쿼리
@@ -19,4 +25,6 @@ router.get('/', function(req, res, next) {
     });
 });
 
-module.exports = router;
+// module.exports = router;
+// export default indexRouter; //오류나네
+export default router; 

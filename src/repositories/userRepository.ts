@@ -1,4 +1,5 @@
-const User = require('../domain/user');
+// const User = require('../domain/user');
+import User from '../domain/user';
 
 const userRepository = {
 
@@ -6,4 +7,5 @@ const userRepository = {
 
 }
 
-module.exports = userRepository;
+// module.exports = userRepository;
+export default userRepository;

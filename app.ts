@@ -1,17 +1,17 @@
-require('dotenv').config();
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 // const { swaggerUi, specs } = require("./config/swagger");
+const app = express();
 
 /** Database */
 // const mysql = require('mysql2');
 
 /** Router */
-const indexRouter = require('./src/routes/indexRouter.js')
-
+import indexRouter from './src/routes/indexRouter'
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
