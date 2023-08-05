@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
       }
       
       // 가져온 데이터를 index 템플릿에 전달하여 렌더링
-      res.render('index', { rows: rows });
+      res.render('../src/index', { rows: rows });
     });
 });
 

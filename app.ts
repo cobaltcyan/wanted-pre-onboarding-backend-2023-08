@@ -5,6 +5,9 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 // const { swaggerUi, specs } = require("./config/swagger");
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 const app = express();
 
 /** Database */
