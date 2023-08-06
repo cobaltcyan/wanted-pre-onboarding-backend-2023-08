@@ -1,10 +1,9 @@
-// import { Router } from 'express';
+import { Router } from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-
-// const router = Router();
+const swaggerRouter = Router();
 
 const options = {
     swaggerDefinition: {
@@ -15,7 +14,6 @@ const options = {
         description: '원티드 백엔드 인턴십 사전과제 관련  API 문서입니다.',
     },
     servers: [
-        
             {
                 url: `http://localhost:${process.env.PORT}`,
                 description: "dev Server",
@@ -23,13 +21,13 @@ const options = {
         ],
     },
     apis: [
-        './src/routes/userRouter.ts',
-        './src/routes/communityRouter.ts',
-    ], // 라우터 파일의 경로를 지정합니다.
+        '../routes/userRouter.ts',
+        '../routes/communityRouter.ts',
+    ],
 };
 
 const specs = swaggerJsdoc(options);
-// router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+swaggerRouter.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-export default { swaggerUi, specs };
-
+// export { swaggerUi, specs };
+export default swaggerRouter;

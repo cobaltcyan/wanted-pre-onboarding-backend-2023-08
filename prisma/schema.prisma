@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Prisma의 model 블록 정의 - 사용자
+model User {
+  id          Int    @id @default(autoincrement())
+  nickname    String
+  userName    String
+  password    String
+  phoneNumber String
+  email       String    @unique
+  intro        String
+  adminYn        String
+  createdAt   DateTime    @default(now())
+  createdId   String
+  updatedAt   DateTime?   @updatedAt
+  updatedId   String?
+  deletedAt   DateTime?
+  deletedId   String?
+  communities Community[]
+}
+
+// Prisma의 model 블록 정의 - 게시판
+model Community {
+  id          Int   @id @default(autoincrement())
+  userId      Int
+  title       String
+  content     String
+  attachmentId String?
+  hidden      Boolean?
+  createdAt   DateTime?   @default(now())  
+  createdId   String?   
+  updatedAt   DateTime?   @updatedAt  
+  updatedId   String?   
+  deletedAt   DateTime?  
+  deletedId   String?   
+  user        User     @relation(fields: [userId], references: [id])
+}

@@ -35,10 +35,10 @@ class UserDto {
   nickname: string;
   userName: string;
   password: string;
-  adminYn: string;
   phoneNumber: string;
   email: string;
   intro: string;
+  adminYn: string;
   createdAt: Date;
   createdId: string | null;
   updatedAt: Date;
@@ -50,10 +50,10 @@ class UserDto {
     nickName: string,
     userName: string,
     password: string,
-    adminYn: string,
     phoneNumber: string,
     email: string,
     intro: string,
+    adminYn: string,
     createdAt: Date = new Date(),
     createdId: string | null,
     updatedAt: Date | null = new Date(),
@@ -65,10 +65,10 @@ class UserDto {
       this.nickname = nickName;
       this.userName = userName;
       this.password = password;
-      this.adminYn = adminYn;
       this.phoneNumber = phoneNumber;
       this.email = email;
       this.intro = intro;
+      this.adminYn = adminYn;
       this.createdAt = new Date();
       this.createdId = createdId;
       this.updatedAt = new Date() || null;

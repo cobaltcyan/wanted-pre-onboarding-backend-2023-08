@@ -1,5 +1,5 @@
 import express from 'express';
-import userTokenValidate from '../middlewares/userTokenValidate';
+// import userTokenValidate from '../middlewares/userTokenValidate';
 import communutityRouter from './communityRouter';
 import userController from '../controllers/userController';
 import communityController from '../controllers/communityController';

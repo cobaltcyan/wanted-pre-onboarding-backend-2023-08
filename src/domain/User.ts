@@ -22,10 +22,10 @@ class User {
   nickname: string;
   userName: string;
   password: string;
-  adminYn: string;
   phoneNumber: string;
   email: string;
   intro: string | null;
+  adminYn: string;
   createdAt: Date;
   createdId: string | null;
   updatedAt: Date;
@@ -38,10 +38,10 @@ class User {
     nickname: string,
     userName: string,
     password: string,
-    adminYn: string,
     phoneNumber: string,
     email: string,
     intro: string | null,
+    adminYn: string,
     createdAt: Date = new Date(),
     createdId: string | null,
     updatedAt: Date | null = new Date(),
@@ -53,10 +53,10 @@ class User {
       this.nickname = nickname;
       this.userName = userName;
       this.password = password;
-      this.adminYn = adminYn;
       this.phoneNumber = phoneNumber;
       this.email = email;
       this.intro = intro || null,
+      this.adminYn = adminYn;
       this.createdAt = new Date();
       this.createdId = createdId;
       this.updatedAt = new Date() || null;
