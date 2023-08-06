@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-const swaggerRouter = Router();
+// const swaggerRouter = Router();
 
 const options = {
     swaggerDefinition: {
@@ -27,7 +27,7 @@ const options = {
 };
 
 const specs = swaggerJsdoc(options);
-swaggerRouter.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+// swaggerRouter.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-// export { swaggerUi, specs };
-export default swaggerRouter;
+export { swaggerUi, specs };
+// export default swaggerRouter;
