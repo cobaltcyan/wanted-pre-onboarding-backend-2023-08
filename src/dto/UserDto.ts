@@ -38,6 +38,7 @@ class UserDto {
   adminYn: string;
   phoneNumber: string;
   email: string;
+  intro: string;
   createdAt: Date;
   createdId: string | null;
   updatedAt: Date;
@@ -52,6 +53,7 @@ class UserDto {
     adminYn: string,
     phoneNumber: string,
     email: string,
+    intro: string,
     createdAt: Date = new Date(),
     createdId: string | null,
     updatedAt: Date | null = new Date(),
@@ -66,6 +68,7 @@ class UserDto {
       this.adminYn = adminYn;
       this.phoneNumber = phoneNumber;
       this.email = email;
+      this.intro = intro;
       this.createdAt = new Date();
       this.createdId = createdId;
       this.updatedAt = new Date() || null;

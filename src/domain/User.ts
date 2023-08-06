@@ -25,6 +25,7 @@ class User {
   adminYn: string;
   phoneNumber: string;
   email: string;
+  intro: string | null;
   createdAt: Date;
   createdId: string | null;
   updatedAt: Date;
@@ -40,6 +41,7 @@ class User {
     adminYn: string,
     phoneNumber: string,
     email: string,
+    intro: string | null,
     createdAt: Date = new Date(),
     createdId: string | null,
     updatedAt: Date | null = new Date(),
@@ -54,6 +56,7 @@ class User {
       this.adminYn = adminYn;
       this.phoneNumber = phoneNumber;
       this.email = email;
+      this.intro = intro || null,
       this.createdAt = new Date();
       this.createdId = createdId;
       this.updatedAt = new Date() || null;
