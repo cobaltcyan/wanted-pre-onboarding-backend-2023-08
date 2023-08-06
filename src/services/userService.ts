@@ -39,8 +39,25 @@ const userService = {
             console.error(err);
             throw new Error('Invalid Error');
         }       
-    }
+    },
 
+    async postSignup(newUserInfo: any) {
+        try {
+            const newUser = await userRepository.createUser(newUserInfo);
+            if (newUser) {
+                return {
+                    user_id: newUser.id,
+                    userName: newUser.userName,
+                    email: newUser.email,
+                    intro: newUser.intro,
+                    phoneNumber: newUser.phoneNumber
+                }
+            }
+        } catch (err) {
+            console.error(err);
+            throw new Error('Invalid Error');
+        }       
+    },
 
 }
 

@@ -35,6 +35,20 @@ const userRepository = {
         }
     },
 
+    async createUser(newUserInfo: any) {
+        try {
+            const newUser = await prisma.user.create({
+                data: {
+                    "email": newUserInfo.email,
+                    "password": newUserInfo.password,
+                }
+            });
+            return newUser;
+        } catch (err) {
+            console.error(err);
+            throw new Error('Invalid Error');
+        }
+    },
 
 }
 
