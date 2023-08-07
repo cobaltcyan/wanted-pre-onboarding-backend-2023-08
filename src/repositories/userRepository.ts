@@ -6,6 +6,21 @@ import { Prisma, PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const userRepository = {
+    
+    async createUser(newUserInfo: any) {
+        try {
+            const newUser = await prisma.user.create({
+                data: {
+                    "email": newUserInfo.email,
+                    "password": newUserInfo.password,
+                }
+            });
+            return newUser;
+        } catch (err) {
+            console.error(err);
+            throw new Error('Invalid Error');
+        }
+    },
 
     async findUserById(user_id: bigint) {
         try {
@@ -29,21 +44,6 @@ const userRepository = {
                 }
             });
             return findUser;
-        } catch (err) {
-            console.error(err);
-            throw new Error('Invalid Error');
-        }
-    },
-
-    async createUser(newUserInfo: any) {
-        try {
-            const newUser = await prisma.user.create({
-                data: {
-                    "email": newUserInfo.email,
-                    "password": newUserInfo.password,
-                }
-            });
-            return newUser;
         } catch (err) {
             console.error(err);
             throw new Error('Invalid Error');
