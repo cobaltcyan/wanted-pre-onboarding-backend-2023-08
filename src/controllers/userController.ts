@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import userService from '../services/userService';
 import * as emailUtil from '../utils/emailUtil';
 import * as passwordUtil from '../utils/encrypt/passwordUtil';
-import UserDto from '../dto/UserDto';
+import UserCreateDto from '../dto/UserCreateDto';
 
 const userController = {
 
@@ -61,14 +61,18 @@ const userController = {
             // 비밀번호 암호화
             const hashedPassword = await passwordUtil.hashPassword(password);
 
-            const newUserInfo = {
+            const newUserInfo: UserCreateDto = {
                 email,
                 password: hashedPassword
             };
 
             const newUser = await userService.postSignup(newUserInfo);
-            return res.status(200).json(newUser);
-
+            // return res.status(200).json(newUser);
+            return res.status(200).json({
+                status: "200",
+                message: "회원가입을 성공하였습니다.",
+                data: newUser
+            });
         } catch(err) {
             console.error(err);
             res.status(500).json({

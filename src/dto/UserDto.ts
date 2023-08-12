@@ -1,21 +1,21 @@
-class UserDto {
-  email: string;
-  password: string;
-
-  constructor(
-    email: string,
-    password: string,
-  ) {
-      this.email = email;
-      this.password = password;
-  }
-}
-
-export default UserDto;
-
 // class UserDto {
+//   email: string;
+//   password: string;
+
+//   constructor(
+//     email: string,
+//     password: string,
+//   ) {
+//       this.email = email;
+//       this.password = password;
+//   }
+// }
+
+// export default UserDto;
+
+class UserDto {
   // id: bigint | null;
-  // email: string;
+  email: string;
   // nickname: string;
   // userName: string;
   // password: string;
@@ -29,8 +29,8 @@ export default UserDto;
   // deletedAt: Date | null;
   // deletedId: string | null;
 
-  // constructor(
-  //   email: string,
+  constructor(
+    email: string,
     // nickName: string,
     // userName: string,
     // password: string,
@@ -43,9 +43,9 @@ export default UserDto;
     // updatedId: string | null,
     // deletedAt: Date | null = new Date(),
     // deletedId: string | null
-  // ) {
+  ) {
       // this.id = null;
-      // this.email = email;
+      this.email = email;
       // this.nickname = nickName;
       // this.userName = userName;
       // this.password = password;
@@ -58,7 +58,7 @@ export default UserDto;
       // this.updatedId = updatedId || null;
       // this.deletedAt = new Date() || null;
       // this.deletedId = deletedId || null;
-//   }
-// }
+  }
+}
 
-// export default UserDto;
+export default UserDto;

@@ -1,4 +1,5 @@
 // const userRepository = require('../repositories/userRepository');
+import UserCreateDto from '../dto/UserCreateDto';
 import UserDto from '../dto/UserDto';
 import User from '../domain/User';
 import userRepository from '../repositories/userRepository';
@@ -7,23 +8,55 @@ import * as passwordUtil from '../utils/encrypt/passwordUtil';
 
 const userService = {
 
-    async postSignup(newUserInfo: UserDto) {
+    async postSignup(newUserInfo: UserCreateDto): Promise<UserDto> {
         try {
-            const newUser = await userRepository.createUser(newUserInfo);
-            if (newUser) {
-                return {
-                    // user_id: newUser.id,
-                    // userName: newUser.userName,
-                    email: newUser.email,
-                    // intro: newUser.intro,
-                    // phoneNumber: newUser.phoneNumber
-                }
+            const newUser = new User(
+                null,
+                newUserInfo.email,
+                '', // nickname
+                '', // userName
+                newUserInfo.password,
+                '', // phoneNumber
+                '', // intro
+                'N', // adminYn
+                new Date(),
+                // newUser.id, // Assign newUser.id to createdId
+                // '',
+                new Date(),
+                // null,
+                new Date(),
+                // null
+            );
+            
+            const createdUser = await userRepository.createUser(newUser);
+            // createdUser.createdId = createdUser.id; // Assigning createdId      // repository 에서 처리
+            // return createdUser;
+            return {
+                email: createdUser.email
             }
         } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }       
     },
+
+    // async postSignup(newUserInfo: UserCreateDto) {
+    //     try {
+    //         const newUser = await userRepository.createUser(newUserInfo);
+    //         if (newUser) {
+    //             return {
+    //                 // user_id: newUser.id,
+    //                 // userName: newUser.userName,
+    //                 email: newUser.email,
+    //                 // intro: newUser.intro,
+    //                 // phoneNumber: newUser.phoneNumber
+    //             }
+    //         }
+    //     } catch(err) {
+    //         console.error(err);
+    //         throw new Error('Invalid Error');
+    //     }       
+    // },
 
     async postSignin(sigininUserInfo: any) {
         try {
