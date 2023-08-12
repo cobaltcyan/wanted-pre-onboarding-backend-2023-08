@@ -69,7 +69,7 @@ const userController = {
             const newUser = await userService.postSignup(newUserInfo);
             return res.status(200).json(newUser);
 
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             res.status(500).json({
                 message: "Invalid Error"
@@ -78,7 +78,7 @@ const userController = {
     },
 
     /** 과제2. 로그인 */
-    async postSignin(req: Request, res: Response, next: NextFunction) {
+    async postSignin(req: Request, res: Response, next: NextFunction): Promise<any> {       // 반환값에 대한 타입 정의도?
         try {
             const { email, password } = req.body;
 
@@ -118,7 +118,7 @@ const userController = {
             } else {
                 return signinUser;
             }
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             res.status(500).json({
                 message: "Invalid Error"

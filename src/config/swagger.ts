@@ -2,7 +2,7 @@ import { Router } from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import swaggerUi from 'swagger-ui-express';
-import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerJSDoc from 'swagger-jsdoc';
 // const swaggerRouter = Router();
 
 const options = {
@@ -21,12 +21,12 @@ const options = {
         ],
     },
     apis: [
-        '../routes/userRouter.ts',
-        '../routes/communityRouter.ts',
+        'src/routes/userRouter.ts',
+        'src/routes/communityRouter.ts',
     ],
 };
 
-const specs = swaggerJsdoc(options);
+const specs = swaggerJSDoc(options);
 // swaggerRouter.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 export { swaggerUi, specs };

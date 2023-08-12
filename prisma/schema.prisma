@@ -13,13 +13,13 @@ datasource db {
 // Prisma의 model 블록 정의 - 사용자
 model User {
   id          Int    @id @default(autoincrement())
-  nickname    String
-  userName    String
-  password    String
-  phoneNumber String
   email       String    @unique
-  intro        String
-  adminYn        String
+  nickname    String    @default("")
+  userName    String    @default("")
+  password    String
+  phoneNumber String    @default("")
+  intro        String    @default("")
+  adminYn        String    @default("N")
   createdAt   DateTime    @default(now())
   createdId   String
   updatedAt   DateTime?   @updatedAt
@@ -35,7 +35,7 @@ model Community {
   userId      Int
   title       String
   content     String
-  attachmentId String?
+  // attachmentId String?
   hidden      Boolean?
   createdAt   DateTime?   @default(now())  
   createdId   String?   

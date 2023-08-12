@@ -4,18 +4,18 @@ const communityService = {
 
     async postNewPosting(newPostingInfo: any) {
         try {
-            const findPosting = await communityRepository.createPosting(newPostingInfo.posting_id);
-            if (findPosting) {
+            const newPosting = await communityRepository.createPosting(newPostingInfo);
+            if (newPosting) {
                 return {
-                    posting_id: findPosting.id,
-                    userId: findPosting.userId,
-                    userName: findPosting.userName,     // 테이블 조인 필요
-                    title: findPosting.title,
-                    content: findPosting.content,
-                    attachementId: findPosting.attachementId,
+                    posting_id: newPosting.id,
+                    userId: newPosting.userId,
+                    userName: newPosting.userName,     // 테이블 조인 필요
+                    title: newPosting.title,
+                    content: newPosting.content,
+                    attachementId: newPosting.attachementId,
                 }
             }
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
@@ -34,27 +34,27 @@ const communityService = {
                     attachementId: findPosting.attachementId,
                 }
             }
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
     },
 
-    async getPostingAll(posting_id: bigint) {
+    async getPostingAll() {
         try {
-            const findPosting = await communityRepository.findPostingAll(posting_id);
-            if (findPosting) {
+            const findPostings = await communityRepository.findPostingAll();
+            if (findPostings) {
                 // to-do: 페이지네이션 구현 필수!
                 return {
-                    posting_id: findPosting.id,
-                    userId: findPosting.userId,
-                    userName: findPosting.userName,     // 테이블 조인 필요
-                    title: findPosting.title,
-                    content: findPosting.content,
-                    attachementId: findPosting.attachementId,
+                    posting_id: findPostings.id,
+                    userId: findPostings.userId,
+                    userName: findPostings.userName,     // 테이블 조인 필요
+                    title: findPostings.title,
+                    content: findPostings.content,
+                    attachementId: findPostings.attachementId,
                 }
             }
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
@@ -77,7 +77,7 @@ const communityService = {
                     updatedId: updatedPosting.updatedId,
                 }
             }
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
@@ -101,7 +101,7 @@ const communityService = {
                     // }
                 }
             }
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }

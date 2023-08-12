@@ -19,11 +19,11 @@
 
 class User {
   id: bigint | null;
-  nickname: string;
+  email: string;
+  nickname: string | null;
   userName: string;
   password: string;
   phoneNumber: string;
-  email: string;
   intro: string | null;
   adminYn: string;
   createdAt: Date;
@@ -35,11 +35,11 @@ class User {
   
   constructor(
     id: bigint | null,
-    nickname: string,
+    email: string,
+    nickname: string | null,
     userName: string,
     password: string,
     phoneNumber: string,
-    email: string,
     intro: string | null,
     adminYn: string,
     createdAt: Date = new Date(),
@@ -50,11 +50,11 @@ class User {
     deletedId: string | null
   ) {
       this.id = id || null;
-      this.nickname = nickname;
+      this.email = email;
+      this.nickname = nickname || null;
       this.userName = userName;
       this.password = password;
       this.phoneNumber = phoneNumber;
-      this.email = email;
       this.intro = intro || null,
       this.adminYn = adminYn;
       this.createdAt = new Date();

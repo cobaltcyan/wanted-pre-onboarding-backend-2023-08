@@ -17,11 +17,11 @@ const communityController = {
                 attachementId
             } = req.body;
 
-            const newPostingInfo = {
+            const newPostingInfo: CommunityDto = {
                 userId,
                 title,
-                content,
-                attachementId       // 값이 없다면 null, 값이 있다면 file Table 에서 자동 생성된 id 값으로 받는다?
+                content
+                // attachementId       // 값이 없다면 null, 값이 있다면 file Table 에서 자동 생성된 id 값으로 받는다?
             };
 
             const newPosting = await communityService.postNewPosting(newPostingInfo);
@@ -33,7 +33,7 @@ const communityController = {
                     }
                 });
             }
-        } catch {
+        } catch(err) {
             console.error(err);
             res.status(500).json({
                 message: "Invalid Error"
@@ -57,7 +57,7 @@ const communityController = {
             } else {
                 return findPosting
             }
-        } catch {
+        } catch(err) {
             console.error(err);
             res.status(500).json({
                 message: "Invalid Error"
@@ -70,7 +70,7 @@ const communityController = {
         try {
             // const { user_id } = req.body;   // token 이 있는채로 조회하게 할 예정(회원만 가능)? 아니얌.. 전체 열어주자!
             
-            const findPostingList = await communityService.getPostingById(posting_id);
+            const findPostingList = await communityService.getPostingAll();
             if (findPostingList) {
                 return res.status(200).json({
                     message: "성공적으로 게시글을 조회하였습니다.",
@@ -81,7 +81,7 @@ const communityController = {
             } else {
                 return findPostingList
             }
-        } catch {
+        } catch(err) {
             console.error(err);
             res.status(500).json({
                 message: "Invalid Error"
@@ -98,7 +98,7 @@ const communityController = {
                 // userName,     // 테이블 조인 필요
                 title,
                 content,         // <br> 처리 유무?
-                attachementId
+                // attachementId
             } = req.body;
             
             const updatePostingInfo = {
@@ -106,7 +106,7 @@ const communityController = {
                 userId,
                 title,
                 content,
-                attachementId       // 값이 없다면 null, 값이 있다면 file Table 에서 자동 생성된 id 값으로 받는다?
+                // attachementId       // 값이 없다면 null, 값이 있다면 file Table 에서 자동 생성된 id 값으로 받는다?
             };
 
             const updatePosting = await communityService.getPostingById(updatePostingInfo.posting_id);
@@ -125,7 +125,7 @@ const communityController = {
                     }
                 });
             }
-        } catch {
+        } catch(err) {
             console.error(err);
             res.status(500).json({
                 message: "Invalid Error"
@@ -163,7 +163,7 @@ const communityController = {
                     }
                 });
             }
-        } catch {
+        } catch(err) {
             console.error(err);
             res.status(500).json({
                 message: "Invalid Error"

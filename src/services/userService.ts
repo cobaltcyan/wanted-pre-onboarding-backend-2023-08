@@ -1,22 +1,24 @@
 // const userRepository = require('../repositories/userRepository');
+import UserDto from '../dto/UserDto';
 import userRepository from '../repositories/userRepository';
+
 import * as passwordUtil from '../utils/encrypt/passwordUtil';
 
 const userService = {
 
-    async postSignup(newUserInfo: any) {
+    async postSignup(newUserInfo: UserDto) {
         try {
             const newUser = await userRepository.createUser(newUserInfo);
             if (newUser) {
                 return {
-                    user_id: newUser.id,
-                    userName: newUser.userName,
+                    // user_id: newUser.id,
+                    // userName: newUser.userName,
                     email: newUser.email,
-                    intro: newUser.intro,
-                    phoneNumber: newUser.phoneNumber
+                    // intro: newUser.intro,
+                    // phoneNumber: newUser.phoneNumber
                 }
             }
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }       
@@ -26,23 +28,31 @@ const userService = {
         try {
 
             // 비밀번호 암호화
-            const hashedPassword = await passwordUtil.hashPassword(sigininUserInfo.password);
+            // const hashedPassword = await passwordUtil.hashPassword(sigininUserInfo.password);
 
-            const userEmail = sigininUserInfo.email;
-            const userPassword = await passwordUtil.comparePassword(sigininUserInfo.password, hashedPassword);
+            // const userEmail = sigininUserInfo.email;
+            // const userPassword = await passwordUtil.comparePassword(sigininUserInfo.password, hashedPassword);
 
 
-            const findUser = await userRepository.findUserByEmail(userEmail);
-
-            // to-do: JWT 토큰 생성 
-            const payload = {
-                user_id: findUser.id
+            const findUser = await userRepository.findUserByEmail(sigininUserInfo.userEmail);
+            if (findUser) {
+                return {
+                    user_id: findUser.id,
+                    userName: findUser.userName,
+                    email: findUser.email,
+                    intro: findUser.intro,
+                    phoneNumber: findUser.phoneNumber,
+                }
             }
+            // to-do: JWT 토큰 생성 
+            // const payload = {
+            //     user_id: findUser.id
+            // }
 
             // to-do: access Token, refresh Token(redis 활용)
 
 
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }   
@@ -61,7 +71,7 @@ const userService = {
                     phoneNumber: findUser.phoneNumber,
                 }
             }
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }       
@@ -85,7 +95,7 @@ const userService = {
                     message: "일치하는 사용자가 없습니다."
                 }
             }
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }       

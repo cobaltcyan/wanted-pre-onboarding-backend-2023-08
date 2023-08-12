@@ -3,7 +3,7 @@ class CommunityDto {
     userId: bigint;
     title: string;
     content: string;
-    attachmentId: string | null;
+    // attachmentId: string | null;
     hidden: Boolean | null;
     createdAt: Date;
     createdId: string | null;
@@ -17,7 +17,7 @@ class CommunityDto {
         userId: bigint,
         title: string,
         content: string,
-        attachementId: string | null,
+        // attachementId: string | null,
         hidden: Boolean | null,
         createdAt: Date = new Date(),
         createdId: string | null,
@@ -31,7 +31,7 @@ class CommunityDto {
         this.userId = userId;
         this.title = title;
         this.content = content;
-        this.attachmentId = attachementId;
+        // this.attachmentId = attachementId;
         this.hidden = hidden;
         this.createdAt = new Date();
         this.createdId = createdId;

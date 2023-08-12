@@ -3,26 +3,26 @@ const prisma = new PrismaClient();
 
 const communityRepository = {
     
-    async createPosting(newPostingInfo: any) {
+    async createPosting(newPostingInfo: any): Promise<any> {
         try {
             const newPosting = await prisma.community.create({
                 data: {
                     "userId": newPostingInfo.userId,
                     "title": newPostingInfo.title,
                     "content": newPostingInfo.content,
-                    "attachmentId":  newPostingInfo.attachmentId || null,
+                    // "attachmentId":  newPostingInfo.attachmentId || null,
                     "createdAt": new Date(),  
                     "createdId": newPostingInfo.userId,
                 }
             });
             return newPosting;
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
     },
     
-    async findPostingById(posting_id: bigint) {
+    async findPostingById(posting_id: bigint): Promise<any> {
         try {
             const findPosting = await prisma.community.findUnique({
                 where: {
@@ -31,13 +31,13 @@ const communityRepository = {
                 }
             });
             return findPosting;
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
     },
     
-    async findPostingAll(posting_id: bigint) {
+    async findPostingAll(): Promise<any> {
         try {
             const findPosting = await prisma.community.findMany({
                 where: {
@@ -45,13 +45,13 @@ const communityRepository = {
                 }
             });
             return findPosting;
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
     },
 
-    async updatePosting(updatePostingInfo: any) {
+    async updatePosting(updatePostingInfo: any): Promise<any> {
         try {
             const updatedPosting = await prisma.community.update({
                 where: {
@@ -64,14 +64,14 @@ const communityRepository = {
                 }
             });
             return updatedPosting;
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
     },
 
     /** hard delete */
-    async deletePosting(posting_id: bigint) {
+    async deletePosting(posting_id: bigint): Promise<any> {
         try {
             const deletedPosting = await prisma.community.delete({
                 where: {
@@ -85,7 +85,7 @@ const communityRepository = {
                 }
             });
             return deletedPosting;
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
