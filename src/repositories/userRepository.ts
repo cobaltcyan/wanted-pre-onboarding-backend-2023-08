@@ -8,14 +8,14 @@ const prisma = new PrismaClient();
 
 const userRepository = {
 
-    async createUser(newUserInfo: User): Promise<UserDto> {
+    async createUser(newUserInfo: UserDto): Promise<UserDto> {
         try {
             const newUser = await prisma.user.create({
                 data: {
                     "email": newUserInfo.email,
                     "password": newUserInfo.password,
                     // "nickname": newUserInfo.nickname,
-                    // "userName": newUserInfo.userName,
+                    // "userName": newUserInfo.userName,z
                     // "phoneNumber": newUserInfo.phoneNumber,
                     // "intro": newUserInfo.intro,
                 }
