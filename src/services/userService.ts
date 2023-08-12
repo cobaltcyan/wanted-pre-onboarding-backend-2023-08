@@ -1,5 +1,6 @@
 // const userRepository = require('../repositories/userRepository');
 import UserDto from '../dto/UserDto';
+import User from '../domain/User';
 import userRepository from '../repositories/userRepository';
 
 import * as passwordUtil from '../utils/encrypt/passwordUtil';
