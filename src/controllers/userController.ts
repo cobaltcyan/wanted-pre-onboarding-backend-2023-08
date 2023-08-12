@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-// const userService = require('../services/userService');
 import userService from '../services/userService';
 import * as emailUtil from '../utils/emailUtil';
 import * as passwordUtil from '../utils/encrypt/passwordUtil';
@@ -131,5 +130,4 @@ const userController = {
     },
 }
 
-// module.exports = userController;
 export default userController;

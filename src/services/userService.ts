@@ -1,4 +1,3 @@
-// const userRepository = require('../repositories/userRepository');
 import UserCreateDto from '../dto/UserCreateDto';
 import UserDto from '../dto/UserDto';
 import User from '../domain/User';
@@ -29,8 +28,6 @@ const userService = {
             );
             
             const createdUser = await userRepository.createUser(newUser);
-            // createdUser.createdId = createdUser.id; // Assigning createdId      // repository 에서 처리
-            // return createdUser;
             return {
                 email: createdUser.email
             }
@@ -40,24 +37,6 @@ const userService = {
         }       
     },
 
-    // async postSignup(newUserInfo: UserCreateDto) {
-    //     try {
-    //         const newUser = await userRepository.createUser(newUserInfo);
-    //         if (newUser) {
-    //             return {
-    //                 // user_id: newUser.id,
-    //                 // userName: newUser.userName,
-    //                 email: newUser.email,
-    //                 // intro: newUser.intro,
-    //                 // phoneNumber: newUser.phoneNumber
-    //             }
-    //         }
-    //     } catch(err) {
-    //         console.error(err);
-    //         throw new Error('Invalid Error');
-    //     }       
-    // },
-
     async postSignin(sigininUserInfo: any) {
         try {
 
@@ -66,7 +45,6 @@ const userService = {
 
             // const userEmail = sigininUserInfo.email;
             // const userPassword = await passwordUtil.comparePassword(sigininUserInfo.password, hashedPassword);
-
 
             const findUser = await userRepository.findUserByEmail(sigininUserInfo.userEmail);
             if (findUser) {
@@ -138,5 +116,4 @@ const userService = {
 
 }
 
-// module.exports = userService;
 export default userService;

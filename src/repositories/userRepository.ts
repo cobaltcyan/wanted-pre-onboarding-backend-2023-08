@@ -1,7 +1,4 @@
-// const User = require('../domain/user');
 import User from '../domain/User';
-
-// import { PrismaClient } from '@prisma/client';
 import { Prisma, PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
@@ -19,7 +16,6 @@ const userRepository = {
                     intro: newUser.intro,
                     adminYn: newUser.adminYn,
                     createdAt: newUser.createdAt,
-                    // createdId: newUser.createdId,
                     // createdId: newUser.createdId.toString(),
                     updatedAt: newUser.updatedAt,
                     // updatedId: newUser.updatedId,
@@ -33,25 +29,6 @@ const userRepository = {
             throw new Error('Invalid Error');
         }
     },
-
-    // async createUser(newUserInfo: User): Promise<User> {
-    //     try {
-    //         const newUser = await prisma.user.create({
-    //             data: {
-    //                 "email": newUserInfo.email,
-    //                 "password": newUserInfo.password,
-    //                 // "nickname": newUserInfo.nickname,
-    //                 // "userName": newUserInfo.userName,z
-    //                 // "phoneNumber": newUserInfo.phoneNumber,
-    //                 // "intro": newUserInfo.intro,
-    //             }
-    //         });
-    //         return newUser;
-    //     } catch(err) {
-    //         console.error(err);
-    //         throw new Error('Invalid Error');
-    //     }
-    // },
 
     async findUserById(user_id: bigint) {
         try {
@@ -83,5 +60,4 @@ const userRepository = {
 
 }
 
-// module.exports = userRepository;
 export default userRepository;
