@@ -1,13 +1,7 @@
-// const express = require('express');
-// const router = express.Router();
-// const database = require('../config/database.js');
-
 import express from 'express';
-import database from '../config/database';
 const router = express.Router();
+import database from '../config/database';
 
-// const userRouter = require('./userRouter');
-// const communityRouter = require('./communityRouter');
 import userRouter from './userRouter';
 import communityRouter from './communityRouter';
 
@@ -17,12 +11,16 @@ router.get('/', function(req, res, next) {
     database.connection.query(sql, (err, rows) => {
       if (err) {
         console.error('쿼리 실행 에러:', err.stack);
-        return res.status(500).send('Internal Server Error');
+        return res.status(500).send('Invalid Server Error');
       }
       
       // 가져온 데이터를 index 템플릿에 전달하여 렌더링
       // res.render('../src/index', { rows: rows });
-      res.render('index', { rows: rows });
+      // res.render('index', { rows: rows });
+
+      res.json({
+        data: rows
+      });
 
     });
 });
@@ -30,6 +28,4 @@ router.get('/', function(req, res, next) {
 router.get('/api/user', userRouter);
 router.get('/api/community', communityRouter);
 
-// module.exports = router;
-// export default indexRouter; //오류나네
 export default router; 

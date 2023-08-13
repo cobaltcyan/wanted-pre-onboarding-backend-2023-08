@@ -18,7 +18,8 @@ const prisma = new PrismaClient();
 
 /** Router */
 import indexRouter from './src/routes/indexRouter'
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
@@ -28,6 +29,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs)); // Swagger 설정
 // app.use('/api-docs', swaggerRouter); // Swagger 설정 추가
 
 app.listen(PORT, () => {
+    // console.log('indexPath:', indexPath);
     console.log(`Server on http://localhost:${PORT}`);
-    console.log('indexPath:', indexPath);
 });

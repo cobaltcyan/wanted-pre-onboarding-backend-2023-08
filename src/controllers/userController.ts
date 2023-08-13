@@ -41,8 +41,8 @@ const userController = {
 
             // 비밀번호 및 비밀번호확인 값 검사
             const comparedPassword = await passwordUtil.comparePassword(password, passwordCheck); 
-            if (comparedPassword) {
-                return res.status(400).json({
+            if (!comparedPassword) {
+                return res.status(404).json({
                     status: "404",
                     message: "비밀번호가 일치하지 않습니다."
                 });

@@ -12,7 +12,7 @@ const communityService = {
                     userName: newPosting.userName,     // 테이블 조인 필요
                     title: newPosting.title,
                     content: newPosting.content,
-                    attachementId: newPosting.attachementId,
+                    // attachementId: newPosting.attachementId,
                 }
             }
         } catch(err) {
@@ -31,7 +31,7 @@ const communityService = {
                     userName: findPosting.userName,     // 테이블 조인 필요
                     title: findPosting.title,
                     content: findPosting.content,
-                    attachementId: findPosting.attachementId,
+                    // attachementId: findPosting.attachementId,
                 }
             }
         } catch(err) {
@@ -51,7 +51,7 @@ const communityService = {
                     userName: findPostings.userName,     // 테이블 조인 필요
                     title: findPostings.title,
                     content: findPostings.content,
-                    attachementId: findPostings.attachementId,
+                    // attachementId: findPostings.attachementId,
                 }
             }
         } catch(err) {
@@ -64,19 +64,21 @@ const communityService = {
         try {
             // to-do: id 가 있는지부터 검사...
 
-            const updatedPosting = await communityRepository.updatePosting(posting_id);
-            if (updatedPosting) {
-                return {
-                    posting_id: updatedPosting.id,
-                    userId: updatedPosting.userId,
-                    userName: updatedPosting.userName,     // 테이블 조인 필요
-                    title: updatedPosting.title,
-                    content: updatedPosting.content,
-                    attachementId: updatedPosting.attachementId,
-                    updatedAt: updatedPosting.updatedAt,  
-                    updatedId: updatedPosting.updatedId,
-                }
-            }
+            // const updatedPosting = await communityRepository.updatePosting(posting_id);
+            // if (updatedPosting) {
+            //     return {
+            //         posting_id: updatedPosting.id,
+            //         userId: updatedPosting.userId,
+            //         userName: updatedPosting.userName,     // 테이블 조인 필요
+            //         title: updatedPosting.title,
+            //         content: updatedPosting.content,
+            //         // attachementId: updatedPosting.attachementId,
+            //         updatedAt: updatedPosting.updatedAt,  
+            //         // updatedId: updatedPosting.updatedId,
+            //     }
+            // }
+            console.log('patchPostingById');
+            
         } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
@@ -97,7 +99,7 @@ const communityService = {
                         userName: deletedPosting.userName,     // 테이블 조인 필요
                         title: deletedPosting.title,
                         content: deletedPosting.content,
-                        attachementId: deletedPosting.content,
+                        // attachementId: deletedPosting.content,
                     // }
                 }
             }

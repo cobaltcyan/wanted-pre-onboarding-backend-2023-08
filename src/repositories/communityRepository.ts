@@ -12,7 +12,7 @@ const communityRepository = {
                     "content": newPostingInfo.content,
                     // "attachmentId":  newPostingInfo.attachmentId || null,
                     "createdAt": new Date(),  
-                    "createdId": newPostingInfo.userId,
+                    // "createdId": newPostingInfo.userId,
                 }
             });
             return newPosting;
@@ -53,17 +53,17 @@ const communityRepository = {
 
     async updatePosting(updatePostingInfo: any): Promise<any> {
         try {
-            const updatedPosting = await prisma.community.update({
-                where: {
-                    "userId": updatePostingInfo.userId,
-                    // "title": updatePostingInfo.title,
-                    // "content": updatePostingInfo.content,
-                    // "attachmentId":  updatePostingInfo.attachmentId || null,
-                    // "updatedAt": new Date(),  
-                    // "updatedId": updatePostingInfo.userId,
-                }
-            });
-            return updatedPosting;
+            // const updatedPosting = await prisma.community.update({
+            //     where: {
+            //         "userId": updatePostingInfo.userId,
+            //         // "title": updatePostingInfo.title,
+            //         // "content": updatePostingInfo.content,
+            //         // "attachmentId":  updatePostingInfo.attachmentId || null,
+            //         // "updatedAt": new Date(),  
+            //         // "updatedId": updatePostingInfo.userId,
+            //     }
+            // });
+            // return updatedPosting;
         } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');

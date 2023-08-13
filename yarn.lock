@@ -2201,10 +2201,10 @@
     "safe-buffer" "5.1.2"
     "sqlstring" "2.3.1"
 
-"mysql2@^3.5.2":
-  "integrity" "sha512-cptobmhYkYeTBIFp2c0piw2+gElpioga1rUw5UidHvo8yaHijMZoo8A3zyBVoo/K71f7ZFvrShA9iMIy9dCzCA=="
-  "resolved" "https://registry.npmjs.org/mysql2/-/mysql2-3.5.2.tgz"
-  "version" "3.5.2"
+"mysql2@^3.6.0":
+  "integrity" "sha512-EWUGAhv6SphezurlfI2Fpt0uJEWLmirrtQR7SkbTHFC+4/mJBrPiSzHESHKAWKG7ALVD6xaG/NBjjd1DGJGQQQ=="
+  "resolved" "https://registry.npmjs.org/mysql2/-/mysql2-3.6.0.tgz"
+  "version" "3.6.0"
   dependencies:
     "denque" "^2.1.0"
     "generate-function" "^2.3.1"

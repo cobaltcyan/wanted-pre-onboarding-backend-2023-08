@@ -17,22 +17,22 @@ const communityController = {
                 attachementId
             } = req.body;
 
-            const newPostingInfo: CommunityDto = {
-                userId,
-                title,
-                content
-                // attachementId       // 값이 없다면 null, 값이 있다면 file Table 에서 자동 생성된 id 값으로 받는다?
-            };
+            // const newPostingInfo: CommunityDto = {
+            //     userId,
+            //     title,
+            //     content
+            //     // attachementId       // 값이 없다면 null, 값이 있다면 file Table 에서 자동 생성된 id 값으로 받는다?
+            // };
 
-            const newPosting = await communityService.postNewPosting(newPostingInfo);
-            if (newPosting) {
-                return res.status(200).json({
-                    message: "새 글이 등록되었습니다.",
-                    data: {
-                        newPosting
-                    }
-                });
-            }
+            // const newPosting = await communityService.postNewPosting(newPostingInfo);
+            // if (newPosting) {
+            //     return res.status(200).json({
+            //         message: "새 글이 등록되었습니다.",
+            //         data: {
+            //             newPosting
+            //         }
+            //     });
+            // }
         } catch(err) {
             console.error(err);
             res.status(500).json({

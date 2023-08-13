@@ -28,9 +28,11 @@ const userService = {
             );
             
             const createdUser = await userRepository.createUser(newUser);
-            return {
-                email: createdUser.email
-            }
+            // return {
+            //     email: createdUser.email
+            // }
+            return new UserDto(createdUser.email);
+
         } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
@@ -62,7 +64,6 @@ const userService = {
             // }
 
             // to-do: access Token, refresh Token(redis 활용)
-
 
         } catch(err) {
             console.error(err);

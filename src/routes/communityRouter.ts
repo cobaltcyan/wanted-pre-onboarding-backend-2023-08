@@ -1,14 +1,15 @@
 import express from 'express';
 // import userTokenValidate from '../middlewares/userTokenValidate';
-import communutityRouter from './communityRouter';
+
+// import communityRouter from './communityRouter';
 import userController from '../controllers/userController';
 import communityController from '../controllers/communityController';
-const router = express.Router();
+const communityRouter = express.Router();
 
-router.post('/posting', communityController.postNewPosting);
-router.get('/posting', communityController.getAllPosting);
-router.get('/posting/:id', communityController.getPostingById);
-router.patch('/posting/:id', communityController.patchPostingById);
-router.delete('/posting/:id', communityController.deletePostingById);
+communityRouter.post('/posting', communityController.postNewPosting);
+communityRouter.get('/posting', communityController.getAllPosting);
+communityRouter.get('/posting/:id', communityController.getPostingById);
+communityRouter.patch('/posting/:id', communityController.patchPostingById);
+communityRouter.delete('/posting/:id', communityController.deletePostingById);
 
-export default router;
+export default communityRouter;

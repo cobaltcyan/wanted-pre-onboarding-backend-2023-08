@@ -1,11 +1,11 @@
 import express from 'express';
+const userRouter = express.Router();
 // import userTokenValidate from '../middlewares/userTokenValidate';
-import communutityRouter from './communityRouter';
+// import communityRouter from './communityRouter';
 import userController from '../controllers/userController';
-import communityController from '../controllers/communityController';
-const router = express.Router();
+// import communityController from '../controllers/communityController';
 
-router.post('/signup', userController.postSignup);
-router.post('/signin', userController.postSignin);
+userRouter.post('/signup', userController.postSignup);
+// userRouter.post('/signin', userController.postSignin);
 
-export default router;
+export default userRouter;
