@@ -3,7 +3,7 @@ const router = express.Router();
 import database from '../config/database';
 
 import userRouter from './userRouter';
-import communityRouter from './communityRouter';
+import postingRouter from './postingRouter';
 
 router.get('/', function(req, res, next) {
     const sql = 'SELECT * FROM TEST'; // 예시: memos 테이블에서 모든 데이터를 가져오는 쿼리
@@ -26,6 +26,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/api/user', userRouter);
-router.get('/api/community', communityRouter);
+router.get('/api/posting', postingRouter);
 
 export default router; 

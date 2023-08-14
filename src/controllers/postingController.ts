@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import communityService from '../services/communityService';
-import CommunityDto from '../dto/CommunityDto';
+import CommunityDto from '../dto/PostingDto';
 import UserDto from '../dto/UserDto';
-import communityRepository from '../repositories/communityRepository';
+import communityRepository from '../repositories/postingRepository';
 
 const communityController = {
 

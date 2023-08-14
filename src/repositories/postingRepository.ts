@@ -1,11 +1,11 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-const communityRepository = {
+const postingRepository = {
     
     async createPosting(newPostingInfo: any): Promise<any> {
         try {
-            const newPosting = await prisma.community.create({
+            const newPosting = await prisma.posting.create({
                 data: {
                     "userId": newPostingInfo.userId,
                     "title": newPostingInfo.title,
@@ -24,7 +24,7 @@ const communityRepository = {
     
     async findPostingById(posting_id: bigint): Promise<any> {
         try {
-            const findPosting = await prisma.community.findUnique({
+            const findPosting = await prisma.posting.findUnique({
                 where: {
                     "id": Number(posting_id),
                     "hidden": false             // soft delete 구현할 경우
@@ -39,7 +39,7 @@ const communityRepository = {
     
     async findPostingAll(): Promise<any> {
         try {
-            const findPosting = await prisma.community.findMany({
+            const findPosting = await prisma.posting.findMany({
                 where: {
                     "hidden": false             // soft delete 구현할 경우
                 }
@@ -53,7 +53,7 @@ const communityRepository = {
 
     async updatePosting(updatePostingInfo: any): Promise<any> {
         try {
-            // const updatedPosting = await prisma.community.update({
+            // const updatedPosting = await prisma.posting.update({
             //     where: {
             //         "userId": updatePostingInfo.userId,
             //         // "title": updatePostingInfo.title,
@@ -73,7 +73,7 @@ const communityRepository = {
     /** hard delete */
     async deletePosting(posting_id: bigint): Promise<any> {
         try {
-            const deletedPosting = await prisma.community.delete({
+            const deletedPosting = await prisma.posting.delete({
                 where: {
                     "id": Number(posting_id)
                     // "userId": deletePostingInfo.userId,
@@ -93,4 +93,4 @@ const communityRepository = {
 
 }
 
-export default communityRepository;
+export default postingRepository;

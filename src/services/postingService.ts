@@ -1,4 +1,4 @@
-import communityRepository from '../repositories/communityRepository';
+import communityRepository from '../repositories/postingRepository';
 
 const communityService = {
 
