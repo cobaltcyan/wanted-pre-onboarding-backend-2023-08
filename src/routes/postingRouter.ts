@@ -3,7 +3,7 @@ import express from 'express';
 
 // import communityRouter from './communityRouter';
 import userController from '../controllers/userController';
-import communityController from '../controllers/communityController';
+import communityController from '../controllers/postingController';
 const communityRouter = express.Router();
 
 communityRouter.post('/posting', communityController.postNewPosting);

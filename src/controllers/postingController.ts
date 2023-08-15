@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import communityService from '../services/communityService';
+import communityService from '../services/postingService';
 import CommunityDto from '../dto/PostingDto';
 import UserDto from '../dto/UserDto';
 import communityRepository from '../repositories/postingRepository';
