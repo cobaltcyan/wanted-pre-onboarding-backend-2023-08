@@ -1,12 +1,11 @@
 import express from 'express';
-const router = express.Router();
 import database from '../config/database';
-
 import userRouter from './userRouter';
 import postingRouter from './postingRouter';
+const router = express.Router();
 
 router.get('/', function(req, res, next) {
-    const sql = 'SELECT * FROM TEST'; // 예시: memos 테이블에서 모든 데이터를 가져오는 쿼리
+    const sql = 'SELECT * FROM User'; // 예시: memos 테이블에서 모든 데이터를 가져오는 쿼리
     
     database.connection.query(sql, (err, rows) => {
       if (err) {
@@ -25,7 +24,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/api/user', userRouter);
-router.get('/api/posting', postingRouter);
+router.use('/api/user', userRouter);
+router.use('/api/posting', postingRouter);
 
 export default router; 

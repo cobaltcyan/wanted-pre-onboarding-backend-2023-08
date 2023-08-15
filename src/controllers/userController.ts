@@ -5,7 +5,6 @@ import * as passwordUtil from '../utils/encrypt/passwordUtil';
 import UserCreateDto from '../dto/UserCreateDto';
 
 const userController = {
-
     /** 과제1. 회원가입 */
     async postSignup(req: Request, res: Response, next: NextFunction) {
         try {
@@ -14,6 +13,8 @@ const userController = {
                 password,
                 passwordCheck
             } = req.body;
+            
+            console.log(req.body);
 
             // 중복 회원 검사
             const findUser = await userService.getUserByEmail(email);
