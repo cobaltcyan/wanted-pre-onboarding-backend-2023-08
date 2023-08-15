@@ -1,4 +1,4 @@
-class CommunityDto {
+class PostingDto {
     id: bigint | null;
     userId: bigint;
     title: string;
@@ -42,4 +42,4 @@ class CommunityDto {
     }
   }
   
-  export default CommunityDto;
+  export default PostingDto;

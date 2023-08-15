@@ -1,4 +1,4 @@
-class Community {
+class Posting {
     id: bigint | null;
     userId: string;
     title: string;
@@ -41,6 +41,4 @@ class Community {
     }
   }
   
-  export default Community;
-  
-  
+  export default Posting;

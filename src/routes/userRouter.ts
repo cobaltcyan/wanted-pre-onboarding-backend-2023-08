@@ -5,7 +5,7 @@ const userRouter = express.Router();
 import userController from '../controllers/userController';
 // import communityController from '../controllers/communityController';
 
-userRouter.post('/signup', userController.postSignup);
-userRouter.post('/signin', userController.postSignin);
+userRouter.post('/signup', userController.postSignup);      // 과제 1  
+userRouter.post('/signin', userController.postSignin);      // 과제 2
 
 export default userRouter;
