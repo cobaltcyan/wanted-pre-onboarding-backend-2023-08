@@ -5,9 +5,11 @@ class PostingDto {
     content: string;
     hidden: Boolean | null;
     createdAt: Date;
-    createdId: string | null;
+    // createdId: string | null;
+    createdId: bigint | null;
     updatedAt: Date;
-    updatedId: string | null;
+    // updatedId: string | null;
+    updatedId: bigint | null;
     
     constructor(
         id: bigint | null,
@@ -16,9 +18,11 @@ class PostingDto {
         content: string,
         hidden: Boolean | null,
         createdAt: Date = new Date(),
-        createdId: string | null,
+        // createdId: string | null,
+        createdId: bigint | null,
         updatedAt: Date | null = new Date(),
-        updatedId: string | null,
+        // updatedId: string | null,
+        updatedId: bigint | null,
     ) {
         this.id = id || null;;
         // this.id = null;

@@ -1,18 +1,18 @@
+import Posting from '../domain/Posting';
 import { Prisma, PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const postingRepository = {
     
-    async createPosting(newPostingInfo: any): Promise<any> {
+    async createPosting(newPostingInfo: Posting): Promise<Posting> {
         try {
             const newPosting = await prisma.posting.create({
                 data: {
                     "userId": newPostingInfo.userId,
                     "title": newPostingInfo.title,
                     "content": newPostingInfo.content,
-                    // "attachmentId":  newPostingInfo.attachmentId || nu,
                     "createdAt": new Date(),  
-                    // "createdId": newPostingInfo.userId,
+                    "createdId": newPostingInfo.userId,
                 }
             });
             return newPosting;
@@ -58,7 +58,6 @@ const postingRepository = {
             //         "userId": updatePostingInfo.userId,
             //         // "title": updatePostingInfo.title,
             //         // "content": updatePostingInfo.content,
-            //         // "attachmentId":  updatePostingInfo.attachmentId || null,
             //         // "updatedAt": new Date(),  
             //         // "updatedId": updatePostingInfo.userId,
             //     }
@@ -79,7 +78,6 @@ const postingRepository = {
                     // "userId": deletePostingInfo.userId,
                     // "title": deletePostingInfo.title,
                     // "content": deletePostingInfo.content,
-                    // "attachmentId":  deletePostingInfo.attachmentId || null,
                     // "deletedAt": new Date(),  
                     // "deletedId": deletePostingInfo.userId,
                 }

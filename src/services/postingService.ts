@@ -9,7 +9,7 @@ const postingService = {
                 return {
                     posting_id: newPosting.id,
                     userId: newPosting.userId,
-                    userName: newPosting.userName,     // 테이블 조인 필요
+                    // userName: newPosting.userName,     // 테이블 조인 필요
                     title: newPosting.title,
                     content: newPosting.content
                 }

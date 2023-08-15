@@ -38,9 +38,11 @@ model Posting {
   // attachmentId String?
   hidden      Boolean?
   createdAt   DateTime?   @default(now())  
-  createdId   String?   
+  // createdId   String?   
+  createdId   BigInt?   
   updatedAt   DateTime?   @updatedAt  
-  updatedId   String?   
+  // updatedId   String?   
+  updatedId   BigInt?   
   // deletedAt   DateTime?  
   // deletedId   String?   
   user        User     @relation(fields: [userId], references: [id])
