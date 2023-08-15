@@ -81,7 +81,8 @@ const userController = {
         } catch(err) {
             console.error(err);
             res.status(500).json({
-                message: "Invalid Error"
+                status: "500",
+                message: "회원가입에 실패하였습니다."
             });
         }
     },
@@ -94,6 +95,7 @@ const userController = {
             // 입력값 검사
             if (email === "" || password === "") {
                 return res.status(404).json({
+                    status: "404",
                     message: "정보를 모두 입력하세요."
                 });
             }
@@ -110,21 +112,10 @@ const userController = {
             const findUser = userService.getUserByEmail(email);
             if (!findUser) {
                 return res.status(400).json({
+                    status: "400",
                     message: "일치하는 이메일이 없습니다."
                 })
             }
-
-            // // 비밀번호 암호화
-            // const hashedPassword = await passwordUtil.hashPassword(password);
-
-            // // 비밀번호 및 비밀번호확인 값 검사
-            // const comparePassword = await passwordUtil.comparePassword(password, hashedPassword); 
-            // if (!comparePassword) {
-            //     return res.status(404).json({
-            //         status: "404",
-            //         message: "비밀번호가 일치하지 않습니다."
-            //     });
-            // }
 
             const signinUserInfo = {
                 email,
@@ -133,17 +124,22 @@ const userController = {
 
             const signinUser = await userService.postSignin(signinUserInfo);
             if(signinUser) {
-                return res.status(200).json({
+                const { accessToken, user } = signinUser;
+                return res.status(200)
+                .set('Authorization', `Bearer ${accessToken}`)
+                .json({
+                    status: "200",
                     message: "로그인에 성공하였습니다.",
-                    data: signinUser
+                    data: signinUser.user
                 });
             } else {
-                return signinUser;
+                return signinUser.user;
             }
         } catch(err) {
             console.error(err);
-            res.status(500).json({
-                message: "Invalid Error"
+            res.status(404).json({
+                status: "404",
+                message: "로그인에 실패하였습니다."
             });
         }
     },

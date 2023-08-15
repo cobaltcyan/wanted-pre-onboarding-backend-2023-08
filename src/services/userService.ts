@@ -3,6 +3,7 @@ import UserDto from '../dto/UserDto';
 import User from '../domain/User';
 import userRepository from '../repositories/userRepository';
 import * as passwordUtil from '../utils/encrypt/passwordUtil';
+import jwtUtil from '../utils/encrypt/jwtUtil';
 
 const userService = {
 
@@ -30,11 +31,11 @@ const userService = {
             return new UserDto(createdUser.email);
         } catch(err) {
             console.error(err);
-            throw new Error('Invalid Error');
+            throw new Error('회원가입에 실패하였습니다.');
         }       
     },
 
-    async postSignin(signinUserInfo: UserCreateDto): Promise<UserDto> {
+    async postSignin(signinUserInfo: UserCreateDto): Promise<any> {
         try {
             const { email, password } = signinUserInfo;
 
@@ -52,18 +53,22 @@ const userService = {
                 throw new Error("비밀번호가 일치하지 않습니다.");
             }
 
-            // to-do: JWT 토큰 생성
-            // const payload = {
-            //     user_id: findUser.id
-            // }
-
+            // 과제2 상세. 로그인시 JWT 토큰 생성 구현
+            const signinUser = new UserDto(findUser.email);
+            const accessToken = jwtUtil.generateAccessToken(signinUser);
+            console.log(accessToken);
+            
             // to-do: access Token, refresh Token(redis 활용)
 
             // 로그인 성공
-            return new UserDto(findUser.email);
+            // return new UserDto(findUser.email);
+            return {
+                accessToken: accessToken,
+                user: signinUser
+            };
         } catch(err) {
             console.error(err);
-            throw new Error('Invalid Error');
+            throw new Error('로그인에 실패하였습니다.');
         }   
     },
 
@@ -82,7 +87,7 @@ const userService = {
             }
         } catch(err) {
             console.error(err);
-            throw new Error('Invalid Error');
+            throw new Error('사용자가 존재하지 않습니다.');
         }       
     },
 
@@ -99,15 +104,9 @@ const userService = {
                     phoneNumber: findUser.phoneNumber,
                 }
             }
-            //  else {
-            //     return {
-            //         status: "400",
-            //         message: "일치하는 사용자가 없습니다."
-            //     }
-            // }
         } catch(err) {
             console.error(err);
-            throw new Error('Invalid Error');
+            throw new Error('사용자가 존재하지 않습니다.');
         }       
     },
 
