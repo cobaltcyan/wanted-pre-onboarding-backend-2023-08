@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import communityService from '../services/postingService';
-import CommunityDto from '../dto/PostingDto';
+import postingService from '../services/postingService';
+import PostingDto from '../dto/PostingDto';
 import UserDto from '../dto/UserDto';
-import communityRepository from '../repositories/postingRepository';
+import postingRepository from '../repositories/postingRepository';
 
 const communityController = {
 
@@ -17,14 +17,14 @@ const communityController = {
                 attachementId
             } = req.body;
 
-            // const newPostingInfo: CommunityDto = {
+            // const newPostingInfo: PostingDto = {
             //     userId,
             //     title,
             //     content
             //     // attachementId       // 값이 없다면 null, 값이 있다면 file Table 에서 자동 생성된 id 값으로 받는다?
             // };
 
-            // const newPosting = await communityService.postNewPosting(newPostingInfo);
+            // const newPosting = await postingService.postNewPosting(newPostingInfo);
             // if (newPosting) {
             //     return res.status(200).json({
             //         message: "새 글이 등록되었습니다.",
@@ -46,7 +46,7 @@ const communityController = {
         try {
             const { posting_id } = req.body;
             
-            const findPosting = await communityService.getPostingById(posting_id);
+            const findPosting = await postingService.getPostingById(posting_id);
             if (findPosting) {
                 return res.status(200).json({
                     message: "성공적으로 게시글을 조회하였습니다.",
@@ -70,7 +70,7 @@ const communityController = {
         try {
             // const { user_id } = req.body;   // token 이 있는채로 조회하게 할 예정(회원만 가능)? 아니얌.. 전체 열어주자!
             
-            const findPostingList = await communityService.getPostingAll();
+            const findPostingList = await postingService.getPostingAll();
             if (findPostingList) {
                 return res.status(200).json({
                     message: "성공적으로 게시글을 조회하였습니다.",
@@ -109,7 +109,7 @@ const communityController = {
                 // attachementId       // 값이 없다면 null, 값이 있다면 file Table 에서 자동 생성된 id 값으로 받는다?
             };
 
-            const updatePosting = await communityService.getPostingById(updatePostingInfo.posting_id);
+            const updatePosting = await postingService.getPostingById(updatePostingInfo.posting_id);
             if (!updatePosting) {
                 return res.status(400).json({
                     message: "수정할 게시글이 조회되지 않습니다.",     // 다른 에러는 어떻게 표시? controller 단에서 표현?
@@ -147,7 +147,7 @@ const communityController = {
                 userId
             };
 
-            const deletedPosting = await communityService.getPostingById(deletePostingInfo.posting_id);
+            const deletedPosting = await postingService.getPostingById(deletePostingInfo.posting_id);
             if (!deletedPosting) {
                 return res.status(400).json({
                     message: "삭제할 게시글이 조회되지 않습니다.",     // 다른 에러는 어떻게 표시? controller 단에서 표현?

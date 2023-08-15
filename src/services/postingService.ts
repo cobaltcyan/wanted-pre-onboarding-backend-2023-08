@@ -1,10 +1,10 @@
-import communityRepository from '../repositories/postingRepository';
+import postingRepository from '../repositories/postingRepository';
 
-const communityService = {
+const postingService = {
 
     async postNewPosting(newPostingInfo: any) {
         try {
-            const newPosting = await communityRepository.createPosting(newPostingInfo);
+            const newPosting = await postingRepository.createPosting(newPostingInfo);
             if (newPosting) {
                 return {
                     posting_id: newPosting.id,
@@ -23,7 +23,7 @@ const communityService = {
 
     async getPostingById(posting_id: bigint) {
         try {
-            const findPosting = await communityRepository.findPostingById(posting_id);
+            const findPosting = await postingRepository.findPostingById(posting_id);
             if (findPosting) {
                 return {
                     posting_id: findPosting.id,
@@ -42,7 +42,7 @@ const communityService = {
 
     async getPostingAll() {
         try {
-            const findPostings = await communityRepository.findPostingAll();
+            const findPostings = await postingRepository.findPostingAll();
             if (findPostings) {
                 // to-do: 페이지네이션 구현 필수!
                 return {
@@ -90,7 +90,7 @@ const communityService = {
             // fintPostingId 검사
 
             // 삭제Posting 삭제
-            const deletedPosting = await communityRepository.deletePosting(posting_id);
+            const deletedPosting = await postingRepository.deletePosting(posting_id);
             if (deletedPosting) {
                 return {
                     // data: {
