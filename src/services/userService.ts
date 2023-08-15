@@ -1,6 +1,7 @@
 import UserCreateDto from '../dto/UserCreateDto';
 import UserDto from '../dto/UserDto';
 import User from '../domain/User';
+import * as passwordUtil from '../utils/encrypt/passwordUtil';
 import userRepository from '../repositories/userRepository';
 
 import * as passwordUtil from '../utils/encrypt/passwordUtil';
@@ -51,7 +52,7 @@ const userService = {
             const findUser = await userRepository.findUserByEmail(sigininUserInfo.userEmail);
             if (findUser) {
                 return {
-                    user_id: findUser.id,
+                    user_id: Number(findUser.id),
                     userName: findUser.userName,
                     email: findUser.email,
                     intro: findUser.intro,
@@ -77,7 +78,7 @@ const userService = {
             // return findUser;
             if (findUser) {
                 return {
-                    user_id: findUser.id,
+                    user_id: Number(findUser.id),
                     userName: findUser.userName,
                     email: findUser.email,
                     intro: findUser.intro,
@@ -96,18 +97,19 @@ const userService = {
             // return findUser;
             if (findUser) {
                 return {
-                    user_id: findUser.id,
+                    user_id: Number(findUser.id),
                     userName: findUser.userName,
                     email: findUser.email,
                     intro: findUser.intro,
                     phoneNumber: findUser.phoneNumber,
                 }
-            } else {
-                return {
-                    status: "400",
-                    message: "일치하는 사용자가 없습니다."
-                }
             }
+            //  else {
+            //     return {
+            //         status: "400",
+            //         message: "일치하는 사용자가 없습니다."
+            //     }
+            // }
         } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');

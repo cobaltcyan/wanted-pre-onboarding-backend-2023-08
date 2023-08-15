@@ -16,6 +16,22 @@ const userController = {
             
             console.log(req.body);
 
+            // 입력값 검사
+            if (email === "" || password === "" || passwordCheck === "") {
+                return res.status(404).json({
+                    status: " 404",
+                    message: "정보를 모두 입력하세요."
+                });
+            }
+
+            // 비밀번호, 비밀번호 확인 값 검사
+            if (password !== passwordCheck) {
+                return res.status(400).json({
+                    status: "400",
+                    message: "비밀번호가 일치하지 않습니다."
+                });
+            }
+
             // 중복 회원 검사
             const findUser = await userService.getUserByEmail(email);
             if (findUser) {
@@ -23,7 +39,7 @@ const userController = {
                     status: "400",
                     message: "기존에 가입되어 있는 회원입니다.",
                     data: {
-                        user_id: findUser.user_id,
+                        user_id: Number(findUser.user_id),          // BigInt 속성을 일반 숫자로 변환
                         email: findUser.email
                     }
                 });
@@ -40,21 +56,12 @@ const userController = {
                 });            
             }
 
-            // 비밀번호 및 비밀번호확인 값 검사
-            const comparedPassword = await passwordUtil.comparePassword(password, passwordCheck); 
-            if (!comparedPassword) {
-                return res.status(404).json({
-                    status: "404",
-                    message: "비밀번호가 일치하지 않습니다."
-                });
-            }
-
             // 비밀번호 유효성 검사 - 8자이상, 반드시 암호화
             const checkedPassword = await passwordUtil.checkLengthPassword(password);
             if (!checkedPassword) {
                 return res.status(404).json({
                     status: "400",
-                    message: checkedPassword
+                    message: "비밀번호는 8자 이상이어야 합니다."
                 }); 
             }
 
@@ -109,10 +116,23 @@ const userController = {
                 })
             }
 
+            // 비밀번호 암호화
+            const hashedPassword = await passwordUtil.hashPassword(password);
+
+            // 비밀번호 및 비밀번호확인 값 검사
+            const comparePassword = await passwordUtil.comparePassword(password, hashedPassword); 
+            if (!comparePassword) {
+                return res.status(404).json({
+                    status: "404",
+                    message: "비밀번호가 일치하지 않습니다."
+                });
+            }
+
             const signinUserInfo = {
                 email,
-                password
+                password: hashedPassword
             }
+
             const signinUser = await userService.postSignin(signinUserInfo);
             if(signinUser) {
                 return res.status(200).json({
