@@ -1,9 +1,7 @@
 import UserCreateDto from '../dto/UserCreateDto';
 import UserDto from '../dto/UserDto';
 import User from '../domain/User';
-import * as passwordUtil from '../utils/encrypt/passwordUtil';
 import userRepository from '../repositories/userRepository';
-
 import * as passwordUtil from '../utils/encrypt/passwordUtil';
 
 const userService = {
