@@ -19,7 +19,7 @@ const userRepository = {
                     // createdId: newUser.createdId.toString(),
                     updatedAt: newUser.updatedAt,
                     // updatedId: newUser.updatedId,
-                    deletedAt: newUser.deletedAt,
+                    // deletedAt: newUser.deletedAt,
                     // deletedId: newUser.deletedId,
                 },
             });

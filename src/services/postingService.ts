@@ -11,8 +11,7 @@ const postingService = {
                     userId: newPosting.userId,
                     userName: newPosting.userName,     // 테이블 조인 필요
                     title: newPosting.title,
-                    content: newPosting.content,
-                    // attachementId: newPosting.attachementId,
+                    content: newPosting.content
                 }
             }
         } catch(err) {
@@ -30,8 +29,7 @@ const postingService = {
                     userId: findPosting.userId,
                     userName: findPosting.userName,     // 테이블 조인 필요
                     title: findPosting.title,
-                    content: findPosting.content,
-                    // attachementId: findPosting.attachementId,
+                    content: findPosting.content
                 }
             }
         } catch(err) {
