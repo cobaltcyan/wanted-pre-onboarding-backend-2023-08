@@ -22,7 +22,7 @@ model User {
   // createdId   String?
   updatedAt   DateTime?   @updatedAt
   // updatedId   String?
-  deletedAt   DateTime?   
+  // deletedAt   DateTime?   
   // deletedId   String?
   postings Posting[]
 }
@@ -38,10 +38,10 @@ model Posting {
   // attachmentId String?
   hidden      Boolean?
   createdAt   DateTime?   @default(now())  
-  // createdId   String?   
+  createdId   String?   
   updatedAt   DateTime?   @updatedAt  
-  // updatedId   String?   
-  deletedAt   DateTime?  
+  updatedId   String?   
+  // deletedAt   DateTime?  
   // deletedId   String?   
   user        User     @relation(fields: [userId], references: [id])
 }

@@ -11,7 +11,7 @@ class User {
   // createdId: bigint | string | null;   // 회원가입시 id 값과 동일하게 업데이트
   updatedAt: Date | null;
   // updatedId: bigint | string | null;
-  deletedAt: Date | null;
+  // deletedAt: Date | null;
   // deletedId: bigint | string | null;
   
   constructor(
@@ -27,7 +27,7 @@ class User {
     // createdId: string | bigint | null,
     updatedAt: Date | null = new Date(),
     // updatedId: string | bigint | null,
-    deletedAt: Date | null = new Date(),
+    // deletedAt: Date | null = new Date(),
     // deletedId: string | bigint | null
   ) {
       this.id = id || null;
@@ -42,7 +42,7 @@ class User {
       // this.createdId = createdId || null;
       this.updatedAt = new Date() || null;
       // this.updatedId = updatedId || null;
-      this.deletedAt = new Date() || null;
+      // this.deletedAt = new Date() || null;
       // this.deletedId = deletedId || null;
   }
 }
