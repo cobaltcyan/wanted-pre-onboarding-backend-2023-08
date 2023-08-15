@@ -50,8 +50,7 @@ const postingService = {
                     userId: findPostings.userId,
                     userName: findPostings.userName,     // 테이블 조인 필요
                     title: findPostings.title,
-                    content: findPostings.content,
-                    // attachementId: findPostings.attachementId,
+                    content: findPostings.content
                 }
             }
         } catch(err) {
@@ -98,8 +97,7 @@ const postingService = {
                         userId: deletedPosting.userId,
                         userName: deletedPosting.userName,     // 테이블 조인 필요
                         title: deletedPosting.title,
-                        content: deletedPosting.content,
-                        // attachementId: deletedPosting.content,
+                        content: deletedPosting.content
                     // }
                 }
             }
@@ -111,4 +109,4 @@ const postingService = {
     
 }
 
-export default communityService;
+export default postingService;

@@ -10,7 +10,7 @@ const postingRepository = {
                     "userId": newPostingInfo.userId,
                     "title": newPostingInfo.title,
                     "content": newPostingInfo.content,
-                    // "attachmentId":  newPostingInfo.attachmentId || null,
+                    // "attachmentId":  newPostingInfo.attachmentId || nu,
                     "createdAt": new Date(),  
                     // "createdId": newPostingInfo.userId,
                 }

@@ -4,17 +4,15 @@ import PostingDto from '../dto/PostingDto';
 import UserDto from '../dto/UserDto';
 import postingRepository from '../repositories/postingRepository';
 
-const communityController = {
+const postingController = {
 
     /** 과제 3. 새로운 게시글 생성 */
     async postNewPosting(req: Request, res: Response, next: NextFunction) {
         try {
             const {
-                userId,
-                // userName,     // 테이블 조인 필요
+                // userId,
                 title,
                 content,         // <br> 처리 유무?
-                attachementId
             } = req.body;
 
             // const newPostingInfo: PostingDto = {
@@ -36,12 +34,36 @@ const communityController = {
         } catch(err) {
             console.error(err);
             res.status(500).json({
-                message: "Invalid Error"
+                message: "게시글을 작성할 수 없습니다."
             });
         }
     },
 
     /** 과제 4. 게시글 목록 조회 */
+    async getAllPosting(req: Request, res: Response, next: NextFunction) {
+        try {
+            // const { user_id } = req.body;   // token 이 있는채로 조회하게 할 예정(회원만 가능)? 아니얌.. 전체 열어주자!
+            
+            const findPostingList = await postingService.getPostingAll();
+            if (findPostingList) {
+                return res.status(200).json({
+                    message: "성공적으로 게시글 목록을 조회하였습니다.",
+                    data: {
+                        findPostingList
+                    }
+                });
+            } else {
+                return findPostingList
+            }
+        } catch(err) {
+            console.error(err);
+            res.status(500).json({
+                message: "게시글 목록을 불러올 수 없습니다."
+            });
+        }
+    },
+
+    /** 과제 5. 특정 게시글 조회 */
     async getPostingById(req: Request, res: Response, next: NextFunction) {
         try {
             const { posting_id } = req.body;
@@ -60,35 +82,11 @@ const communityController = {
         } catch(err) {
             console.error(err);
             res.status(500).json({
-                message: "Invalid Error"
+                message: "게시글을 조회할 수 없습니다."
             });
         }
     },
-
-    /** 과제 5. 특정 게시글 조회 */
-    async getAllPosting(req: Request, res: Response, next: NextFunction) {
-        try {
-            // const { user_id } = req.body;   // token 이 있는채로 조회하게 할 예정(회원만 가능)? 아니얌.. 전체 열어주자!
-            
-            const findPostingList = await postingService.getPostingAll();
-            if (findPostingList) {
-                return res.status(200).json({
-                    message: "성공적으로 게시글을 조회하였습니다.",
-                    data: {
-                        findPostingList
-                    }
-                });
-            } else {
-                return findPostingList
-            }
-        } catch(err) {
-            console.error(err);
-            res.status(500).json({
-                message: "Invalid Error"
-            });
-        }
-    },
-
+    
     /** 과제 6. 특정 게시글 수정 */
     async patchPostingById(req: Request, res: Response, next: NextFunction) {
         try {
@@ -128,7 +126,7 @@ const communityController = {
         } catch(err) {
             console.error(err);
             res.status(500).json({
-                message: "Invalid Error"
+                message: "게시글 수정에 실패하였습니다."
             });
         }
     },
@@ -150,7 +148,7 @@ const communityController = {
             const deletedPosting = await postingService.getPostingById(deletePostingInfo.posting_id);
             if (!deletedPosting) {
                 return res.status(400).json({
-                    message: "삭제할 게시글이 조회되지 않습니다.",     // 다른 에러는 어떻게 표시? controller 단에서 표현?
+                    message: "삭제할 게시글이 조회되지 않습니다.",
                     data: {
                         deletedPosting
                     }
@@ -166,11 +164,11 @@ const communityController = {
         } catch(err) {
             console.error(err);
             res.status(500).json({
-                message: "Invalid Error"
+                message: "게시글 삭제에 실패하였습니다."
             });
         }
     },
 
 }
 
-export default communityController;
+export default postingController;
