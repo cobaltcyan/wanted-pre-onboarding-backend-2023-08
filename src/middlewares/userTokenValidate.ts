@@ -18,7 +18,7 @@ const userTokenValidate = {
 
     // async validateToken(req: Request, res: Response, next: NextFunction) {
     async validateToken(req: ExtendedRequest, res: Response, next: NextFunction) {
-            try {
+        try {
             const token = req.headers.authorization;
             const accessToken = token ? token.replace('Bearer ', '') : '';
             const decoded = jwt.verify(accessToken, secretKey) as TokenPayload;
