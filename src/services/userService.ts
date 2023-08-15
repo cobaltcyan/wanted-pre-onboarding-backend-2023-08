@@ -38,31 +38,39 @@ const userService = {
         }       
     },
 
-    async postSignin(sigininUserInfo: any) {
+    async postSignin(signinUserInfo: UserCreateDto): Promise<UserDto> | null {
         try {
+            const { email, password } = signinUserInfo;
 
             // 비밀번호 암호화
-            // const hashedPassword = await passwordUtil.hashPassword(sigininUserInfo.password);
-
-            // const userEmail = sigininUserInfo.email;
-            // const userPassword = await passwordUtil.comparePassword(sigininUserInfo.password, hashedPassword);
-
-            const findUser = await userRepository.findUserByEmail(sigininUserInfo.userEmail);
-            if (findUser) {
-                return {
-                    user_id: Number(findUser.id),
-                    userName: findUser.userName,
-                    email: findUser.email,
-                    intro: findUser.intro,
-                    phoneNumber: findUser.phoneNumber,
-                }
+            const hashedPassword = await passwordUtil.hashPassword(password);
+            
+            const findUser = await userRepository.findUserByEmail(email);
+            if (!findUser) {
+                throw new Error("일치하는 이메일이 없습니다.");
             }
+
+            // 비밀번호 및 비밀번호확인 값 검사
+            const comparePassword = await passwordUtil.comparePassword(password, findUser.password); 
+            if (!comparePassword) {
+                throw new Error("비밀번호가 일치하지 않습니다.");
+            }
+
             // to-do: JWT 토큰 생성 
             // const payload = {
             //     user_id: findUser.id
             // }
 
             // to-do: access Token, refresh Token(redis 활용)
+
+            // 로그인 성공
+            return {
+                // user_id: Number(findUser.id),
+                // userName: findUser.userName,
+                email: findUser.email
+                // intro: findUser.intro,
+                // phoneNumber: findUser.phoneNumber,
+            } as UserDto;
 
         } catch(err) {
             console.error(err);

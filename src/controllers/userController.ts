@@ -116,21 +116,21 @@ const userController = {
                 })
             }
 
-            // 비밀번호 암호화
-            const hashedPassword = await passwordUtil.hashPassword(password);
+            // // 비밀번호 암호화
+            // const hashedPassword = await passwordUtil.hashPassword(password);
 
-            // 비밀번호 및 비밀번호확인 값 검사
-            const comparePassword = await passwordUtil.comparePassword(password, hashedPassword); 
-            if (!comparePassword) {
-                return res.status(404).json({
-                    status: "404",
-                    message: "비밀번호가 일치하지 않습니다."
-                });
-            }
+            // // 비밀번호 및 비밀번호확인 값 검사
+            // const comparePassword = await passwordUtil.comparePassword(password, hashedPassword); 
+            // if (!comparePassword) {
+            //     return res.status(404).json({
+            //         status: "404",
+            //         message: "비밀번호가 일치하지 않습니다."
+            //     });
+            // }
 
             const signinUserInfo = {
                 email,
-                password: hashedPassword
+                password
             }
 
             const signinUser = await userService.postSignin(signinUserInfo);
