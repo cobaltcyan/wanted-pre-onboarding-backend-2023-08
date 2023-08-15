@@ -27,18 +27,14 @@ const userService = {
             );
             
             const createdUser = await userRepository.createUser(newUser);
-            // return {
-            //     email: createdUser.email
-            // }
             return new UserDto(createdUser.email);
-
         } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }       
     },
 
-    async postSignin(signinUserInfo: UserCreateDto): Promise<UserDto> | null {
+    async postSignin(signinUserInfo: UserCreateDto): Promise<UserDto> {
         try {
             const { email, password } = signinUserInfo;
 
@@ -56,7 +52,7 @@ const userService = {
                 throw new Error("비밀번호가 일치하지 않습니다.");
             }
 
-            // to-do: JWT 토큰 생성 
+            // to-do: JWT 토큰 생성
             // const payload = {
             //     user_id: findUser.id
             // }
@@ -64,14 +60,7 @@ const userService = {
             // to-do: access Token, refresh Token(redis 활용)
 
             // 로그인 성공
-            return {
-                // user_id: Number(findUser.id),
-                // userName: findUser.userName,
-                email: findUser.email
-                // intro: findUser.intro,
-                // phoneNumber: findUser.phoneNumber,
-            } as UserDto;
-
+            return new UserDto(findUser.email);
         } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');

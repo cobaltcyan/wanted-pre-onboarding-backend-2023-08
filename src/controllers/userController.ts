@@ -13,8 +13,6 @@ const userController = {
                 password,
                 passwordCheck
             } = req.body;
-            
-            console.log(req.body);
 
             // 입력값 검사
             if (email === "" || password === "" || passwordCheck === "") {

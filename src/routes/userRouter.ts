@@ -6,6 +6,6 @@ import userController from '../controllers/userController';
 // import communityController from '../controllers/communityController';
 
 userRouter.post('/signup', userController.postSignup);
-// userRouter.post('/signin', userController.postSignin);
+userRouter.post('/signin', userController.postSignin);
 
 export default userRouter;
