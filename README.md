@@ -1,24 +1,30 @@
 # 원티드 프리온보딩 백엔드 인턴십 - 선발 과제
-<br />
-### 과제 제출 필수 사항
-
-- 과제의 소스코드는 반드시 본인의 GitHub 레포지토리에 **Public**으로 설정하여 업로드 해주세요.
-- 레파지토리의 이름은 `wanted-pre-onboarding-backend`로 지정해야 합니다.
-- README.md 파일에는 다음과 같은 사항들이 포함되어야 합니다:
-    - 지원자의 성명
-        - 박세진
-    - 애플리케이션의 실행 방법 (엔드포인트 호출 방법 포함)
-    - 데이터베이스 테이블 구조 
-    - 구현한 API의 동작을 촬영한 데모 영상 링크
-    - 구현 방법 및 이유에 대한 간략한 설명
-        - JavaScript(TypeScript)/Express 으로 하되, DB는 MySQL 8.0 을 이용하고, ORM은 prisma 으로 선택하였습니다. 
-    - API 명세(request/response 포함)
-        - swagger 문서 참조
-- 과제 제출은 참가 신청 시 수행한 과제의 레포지토리 주소를 제출하면 됩니다.
-    - 제출하였습니다.
 
 <br></br>
-### 3. API 요구 사항
+### 1. 과제 제출 필수 사항
+
+- 지원자의 성명
+    - 박세진
+- 애플리케이션의 실행 방법 (엔드포인트 호출 방법 포함)
+  
+  ```
+  nodemon app.ts
+  ```
+  
+- 데이터베이스 테이블 구조
+    - DataBase명: wanted_internship<br/>
+    ![DB_테이블구조](https://github.com/cobaltcyan/wanted-pre-onboarding-backend/assets/113007798/b5e8aa4b-e541-45d7-a06b-13167ca2abfc)
+
+- 구현한 API의 동작을 촬영한 데모 영상 링크
+    - https://drive.google.com/drive/folders/1-bokMt81WxAnd1GGU4pOf_5u0Cfkw6Hk?usp=sharing
+- 구현 방법 및 이유에 대한 간략한 설명
+    - JavaScript(TypeScript)/Express 으로 하되, DB는 MySQL 8.0 을 이용하고, ORM은 prisma 으로 선택하였습니다. 
+- API 명세(request/response 포함)
+    - swagger 문서 참조 : http://localhost:5000/api-docs/
+- 과제 제출은 참가 신청 시 수행한 과제의 레포지토리 주소를 제출하면 됩니다.
+    - 제출하였습니다.
+<br></br>
+### 2. API 요구 사항
 **JavaScript(TypeScript)/Express 선택** <br />
 
 - **과제 1. 사용자 회원가입 엔드포인트**
