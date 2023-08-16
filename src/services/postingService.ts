@@ -1,35 +1,54 @@
+import PostingCreateDto from '../dto/PostingCreateDto';
+import Posting from '../domain/Posting';
 import postingRepository from '../repositories/postingRepository';
 
 const postingService = {
 
-    async postNewPosting(newPostingInfo: any) {
+    async postNewPosting(newPostingInfo: PostingCreateDto): Promise<any> {
         try {
-            const newPosting = await postingRepository.createPosting(newPostingInfo);
-            if (newPosting) {
+            const newPosting = new Posting(
+                null,
+                newPostingInfo.userId,
+                newPostingInfo.title,
+                newPostingInfo.content,
+                false,
+                new Date(),
+                newPostingInfo.createdId,
+                null,
+                null
+            );
+
+            const newPosts = await postingRepository.createPosting(newPosting);
+            if (newPosts) {
                 return {
-                    posting_id: newPosting.id,
-                    userId: newPosting.userId,
-                    // userName: newPosting.userName,     // 테이블 조인 필요
-                    title: newPosting.title,
-                    content: newPosting.content
+                    posting_id: newPosts.id,
+                    userId: newPosts.userId,
+                    title: newPosts.title,
+                    content: newPosts.content,
+                    createdAt: newPosts.createdAt,
+                    createdId: newPosts.createdId
                 }
+                // return new PostingCreateDto(newPosting);
             }
+            return newPosts;
         } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
         }
     },
 
-    async getPostingById(posting_id: bigint) {
+    async getPostingById(posting_id: bigint): Promise<any> {
         try {
             const findPosting = await postingRepository.findPostingById(posting_id);
             if (findPosting) {
                 return {
                     posting_id: findPosting.id,
                     userId: findPosting.userId,
-                    userName: findPosting.userName,     // 테이블 조인 필요
+                    // userName: findPosting.userName,     // 테이블 조인 필요
                     title: findPosting.title,
-                    content: findPosting.content
+                    content: findPosting.content,
+                    createdAt: findPosting.createdAt,
+                    createdId: findPosting.createdId
                 }
             }
         } catch(err) {
@@ -82,20 +101,26 @@ const postingService = {
         }
     },
     
-    async deletePostingById(posting_id: bigint) {
+    async deletePostingById(posting_id: bigint, userId: bigint) {
         try {
-            // fintPostingId 검사
 
+            // fintPostingId 검사
+            const findPosting = await postingRepository.findPostingById(posting_id);
+            if(!findPosting) {
+                throw new Error("삭제할 게시물이 없습니다");
+            }
+
+            if (findPosting.userId !== userId ) {
+                throw new Error("삭제할 권한이 없습니다");
+            }
+            
             // 삭제Posting 삭제
-            const deletedPosting = await postingRepository.deletePosting(posting_id);
+            const deletedPosting = await postingRepository.deletePosting(posting_id, userId);
             if (deletedPosting) {
                 return {
                     // data: {
                         posting_id: deletedPosting.id,
-                        userId: deletedPosting.userId,
-                        userName: deletedPosting.userName,     // 테이블 조인 필요
-                        title: deletedPosting.title,
-                        content: deletedPosting.content
+                        userId: deletedPosting.userId
                     // }
                 }
             }

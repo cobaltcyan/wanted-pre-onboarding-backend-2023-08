@@ -12,19 +12,18 @@ const postingController = {
         try {
             const {
                 // id,
-                // userId,
+                userId,
                 title,
                 content,         // <br> 처리 유무?
             } = req.body;
 
-            const newPostingInfo = {
-                // id,
-                // userId,
+            const newPostingInfo: PostingCreateDto = {
+                id: null,
+                userId: BigInt(userId),
                 title,
                 content,
-                // hidden,
-                // createdAt,
-                // createdId
+                createdAt: new Date(),
+                createdId: BigInt(userId)
             };
 
             const newPosting = await postingService.postNewPosting(newPostingInfo);

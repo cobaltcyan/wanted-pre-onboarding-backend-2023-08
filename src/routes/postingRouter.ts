@@ -1,8 +1,6 @@
 import express from 'express';
-// import userTokenValidate from '../middlewares/userTokenValidate';
-
-// import communityRouter from './communityRouter';
-import userController from '../controllers/userController';
+import userTokenValidate from '../middlewares/userTokenValidate';
+// import userController from '../controllers/userController';
 import postingController from '../controllers/postingController';
 const postingRouter = express.Router();
 

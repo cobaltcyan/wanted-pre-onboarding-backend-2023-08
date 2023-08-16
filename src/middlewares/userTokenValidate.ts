@@ -24,11 +24,12 @@ const userTokenValidate = {
             const decoded = jwt.verify(accessToken, secretKey) as TokenPayload;
             console.log(decoded);
             req.user = decoded;
+            console.log(req.user.email);
             // user_id가 존재하지 않거나 user_id와 일치하지 않을 경우 에러 처리
             if (!decoded) {
                 return res.status(401).json({
                     status: "401",
-                    message: "Unauthorized token / 권한이 없습니다.",
+                    message: "권한이 없습니다(Unauthorized token)",
                 });
             }
         } catch (err: any) {

@@ -4,18 +4,19 @@ const prisma = new PrismaClient();
 
 const postingRepository = {
     
-    async createPosting(newPostingInfo: Posting): Promise<Posting> {
+    async createPosting(newPosting: Posting): Promise<Posting> {
         try {
-            const newPosting = await prisma.posting.create({
+            const newPosts = await prisma.posting.create({
                 data: {
-                    "userId": newPostingInfo.userId,
-                    "title": newPostingInfo.title,
-                    "content": newPostingInfo.content,
-                    "createdAt": new Date(),  
-                    "createdId": newPostingInfo.userId,
+                    // "id": newPosting.id,
+                    "userId": newPosting.userId,
+                    "title": newPosting.title,
+                    "content": newPosting.content,
+                    "createdAt": newPosting.createdAt,
+                    "createdId": newPosting.createdId,
                 }
             });
-            return newPosting;
+            return newPosts;
         } catch(err) {
             console.error(err);
             throw new Error('Invalid Error');
@@ -70,16 +71,12 @@ const postingRepository = {
     },
 
     /** hard delete */
-    async deletePosting(posting_id: bigint): Promise<any> {
+    async deletePosting(posting_id: bigint, userId: bigint): Promise<any> {
         try {
             const deletedPosting = await prisma.posting.delete({
                 where: {
-                    "id": Number(posting_id)
-                    // "userId": deletePostingInfo.userId,
-                    // "title": deletePostingInfo.title,
-                    // "content": deletePostingInfo.content,
-                    // "deletedAt": new Date(),  
-                    // "deletedId": deletePostingInfo.userId,
+                    "id": Number(posting_id),
+                    "userId": userId,
                 }
             });
             return deletedPosting;
